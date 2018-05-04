@@ -15,6 +15,13 @@ class SimpleData(object):
         return self._msg
 
 
+def debug(data):
+    """ To debug if any topics are `None` """
+    print("")
+    for item in data:
+        print(type(item))
+
+
 def main(args, topics, data_collectors):
     bridge = CvBridge()
     rospy.init_node('main', anonymous=True)
@@ -29,15 +36,16 @@ def main(args, topics, data_collectors):
 
     while not rospy.is_shutdown():
         data = [data_collectors[i].get_data() for i in range(len(data_collectors))]
+        debug(data)
 
-        # Adjust the index according to what you want to show/save
+        # ADJUST INDEX according to what you want to show/save
         if args.robot == 'fetch':
-            imgraw = data[4]
+            imgraw = data[3]
         elif args.robot == 'hsr':
             imgraw = data[6]
 
         # desired_encoding = {'bgr8','passthrough'} for rgb & depth respectively
-        img = bridge.imgmsg_to_cv2(imgraw, desired_encoding="bgr8")
+        img = bridge.imgmsg_to_cv2(imgraw, desired_encoding="passthrough")
         name = 'test.png'
         cv2.imshow(name, img)
         cv2.imwrite(name, img)
@@ -53,16 +61,15 @@ if __name__ == '__main__':
     assert args.robot in ['fetch','hsr']
 
     if args.robot == 'fetch':
-        # Only the first and last here are not None. :(
+        # Fetch docs have typos on outdated topic names :(
         topics = [
             ('head_camera/depth_registered/points', PointCloud2),
-            ('head_camera/depth_downsampled/points', PointCloud2),
-            ('head_camera/depth/image_raw', Image),
-            ('head_camera/depth/image', Image),
+            ('head_camera/depth_registered/image_raw', Image), # saved
+            ('head_camera/depth_downsample/points', PointCloud2),
+            ('head_camera/depth_downsample/image_raw', Image), # saved
             ('head_camera/rgb/image_raw', Image), # saved
         ]
     elif args.robot == 'hsr':
-        # All of these are not None, fortunately.
         topics = [
             ('/hsrb/head_rgbd_sensor/rgb/image_rect_color', Image), # saved
             ('/hsrb/head_rgbd_sensor/depth_registered/image_raw', Image), # saved

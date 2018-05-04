@@ -37,8 +37,9 @@ Important Points:
   something interesting. You can move the robot to a more interesting starting
   pose.
 
-- Unfortunately, the Fetch doesn't seem to use some of its topics. [I filed an
-  issue about this here][1].
+- Unfortunately, the Fetch documentation has some outdated topics listed, and
+  seems to be shorter. [I filed an older issue about this here][1] which I've
+  figured out.
 
 
 [1]:https://github.com/fetchrobotics/fetch_ros/issues/74

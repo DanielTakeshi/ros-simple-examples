@@ -15,7 +15,14 @@ Here is `head_camera/rgb/image_raw`:
 
 ![.](images/fetch/head_camera--rgb--image_raw.png?raw=true)
 
-Unfortunately that is the only image that I have actually been able to save!
+Unfortunately, the Fetch docs have outdated camera topic names. I corrected this
+and got the following for `head_camera/depth_registered/image_raw` and
+`head_camera/depth_downsample/image_raw`, respectively. Seems like the only
+difference is the size. It might also be tough to see depending on how we save
+it.
+
+![.](images/fetch/head_camera--depth_registered--image_raw.png?raw=true)
+![.](images/fetch/head_camera--depth_downsample--image_raw.png?raw=true)
 
 
 ## HSR
