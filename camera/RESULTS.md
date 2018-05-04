@@ -35,7 +35,9 @@ it is in the way:
 Here are `/hsrb/head_l_stereo_camera/image_rect_color` and then for the right
 camera. These are at higher resolutions than the others, interesting. These
 correspond to the cameras in the two "eyes" of the robot. The previous one (the
-`head_center_camera`) is located in between these two cameras.
+`head_center_camera`) is located in between these two cameras. You can see this
+clearly reflected in that the robot hand is barely visible in these, and on
+different sides.
 
 ![.](images/hsr/hsrb--head_l_stereo_camera--image_rect_color.png?raw=true)
 ![.](images/hsr/hsrb--head_r_stereo_camera--image_rect_color.png?raw=true)
@@ -45,9 +47,10 @@ correspond to the cameras in the two "eyes" of the robot. The previous one (the
 Now we go to the `head_rgbd_sensor` for the rgb and depth images. Here is
 `/hsrb/head_rgbd_sensor/rgb/image_rect_color` (i.e., the rgb), and then 
 `/hsrb/head_rgbd_sensor/depth_registered/image_raw`, it is a bit
-hard to see depending on how we save the image, supposed to give us some depth
-information. These cameras are located at the top of the robot head, above the
-stereo cameras.
+hard to see depending on what kind of image we saved (different topics set
+pixels based on different distance metrics, etc.). It is supposed to give us
+some depth information. These cameras are located at the top of the robot head,
+above the stereo cameras. Thus, the robot hand is not visible in the RGB image.
 
 ![.](images/hsr/hsrb--head_rgbd_sensor--rgb--image_rect_color.png?raw=true)
 ![.](images/hsr/hsrb--head_rgbd_sensor--depth_registered--image_raw.png?raw=true)
