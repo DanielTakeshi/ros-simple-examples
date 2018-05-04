@@ -6,4 +6,7 @@ plus a list of the appropriate robot's ROS topic names.
 
 Examples:
 
-- `camera`: Processes the robot's camera images.
+- `camera`: Processes the robot's camera images. Mostly understood.
+
+There are also topics for the robots listed in `topics`. However, these might be
+dependent on what kind of launch file we used for the simulator?
