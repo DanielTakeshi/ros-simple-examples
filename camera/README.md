@@ -11,8 +11,7 @@ This will run some code and save some images from the robot's camera. See
 `RESULTS.md` for more detailed examples.
 
 In order for this to actually do something, you need to start the Gazebo
-simulator so there is actually a ROS master to connect. For the Fetch, one
-possibility is to run:
+simulator so that a ROS master exists. For the Fetch, one possibility is to run:
   
 ```
 roslaunch fetch_gazebo playground.launch
