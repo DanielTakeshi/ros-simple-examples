@@ -7,8 +7,9 @@ python camera_simple.py --robot X
 ```
 
 where `X` should be replaced with `hsr` or `fetch`, depending on your robot.
-This will run some code and save some images from the robot's camera. See
-`RESULTS.md` for more detailed examples.
+This will run some code and save some images from the robot's camera. 
+
+**See `RESULTS.md` for details.**
 
 In order for this to do something interesting, you need to start the Gazebo
 simulator so that a ROS master exists. For the Fetch, one possibility is to run:
@@ -41,5 +42,8 @@ Important Points:
   seems to be shorter. [I filed an older issue about this here][1] which I've
   figured out.
 
+- When I save the depth images as `png` files and then open them, they tend to
+  look almost (if not entirely) black, despite how the `imshow()` function
+  actually displays some black and white. I'm not sure how to get this to match.
 
 [1]:https://github.com/fetchrobotics/fetch_ros/issues/74

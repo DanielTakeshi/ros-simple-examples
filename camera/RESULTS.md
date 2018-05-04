@@ -24,6 +24,17 @@ it.
 ![.](images/fetch/head_camera--depth_registered--image_raw.png?raw=true)
 ![.](images/fetch/head_camera--depth_downsample--image_raw.png?raw=true)
 
+Update: yes I know it looks all black. When CV shows it during code using
+`imshow()`, it has clear black and white structure.
+
+Also, for checking topics, this could be useful after running the simulator:
+
+```
+rostopic echo -n 1 [topic_name]
+```
+
+the `-n 1` means we only see it printed once.
+
 
 ## HSR
 
