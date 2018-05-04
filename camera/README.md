@@ -10,7 +10,7 @@ where `X` should be replaced with `hsr` or `fetch`, depending on your robot.
 This will run some code and save some images from the robot's camera. See
 `RESULTS.md` for more detailed examples.
 
-In order for this to actually do something, you need to start the Gazebo
+In order for this to do something interesting, you need to start the Gazebo
 simulator so that a ROS master exists. For the Fetch, one possibility is to run:
   
 ```
@@ -30,13 +30,12 @@ Important Points:
 
 - The `rospy.sleep(x)` code will hang if the Gazebo simulator is not running. In
   some cases you need to click the 'start' button (lower left corner) in the
-  simulator before the robot's cameras actually see anything. It seems like the
-  simulator is paused by default for the HSR, but runs automatically for the
-  Fetch.
+  simulator before the robot's cameras see anything. It seems like the simulator
+  is paused by default for the HSR, but runs automatically for the Fetch.
 
-- It is helpful to adjust the gazebo simulator so that the robot is actually
-  seeing something interesting. You can move the robot to a more interesting
-  starting pose.
+- It is helpful to adjust the gazebo simulator so that the robot is seeing
+  something interesting. You can move the robot to a more interesting starting
+  pose.
 
 - Unfortunately, the Fetch doesn't seem to use some of its topics. [I filed an
   issue about this here][1].
