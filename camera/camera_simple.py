@@ -1,6 +1,31 @@
 import argparse, cv2, os, rospy, sys, threading, time
 from sensor_msgs.msg import CameraInfo, Image, JointState, PointCloud2
 from cv_bridge import CvBridge, CvBridgeError
+from pprint import pprint
+
+def debug(data):
+    """ To debug if any topics are `None` """
+    print("")
+    for item in data:
+        print(type(item))
+
+def inspect(data):
+    """ Debug object attributes, etc.
+
+    Mostly to confirm that these match the ROS docs. All the attributes in the
+    message definiton should be accessible just by dong data.attribute_name.
+    Don't use vars(data) if data doesn't have a __dict__ attribute, which is the
+    case for the sensor_msgs/Image type (for instance). For the Images, by the
+    way, the type of `data.data` is actually a 'str' so can't just call numpy on
+    it, unfortunately.
+    """
+    print("\nvars of the data of type:\n{}".format(type(data)))
+    #pprint(vars(data))
+    #pprint(data) # with images this prints the data which is a huge array...
+    print(data.header)
+    print(type(data.data))
+    print("(Done)\n")
+    sys.exit()
 
 
 class SimpleData(object):
@@ -13,13 +38,6 @@ class SimpleData(object):
 
     def get_data(self):
         return self._msg
-
-
-def debug(data):
-    """ To debug if any topics are `None` """
-    print("")
-    for item in data:
-        print(type(item))
 
 
 def main(args, topics, data_collectors):
@@ -40,12 +58,12 @@ def main(args, topics, data_collectors):
 
         # ADJUST INDEX according to what you want to show/save
         if args.robot == 'fetch':
-            imgraw = data[3]
+            imgraw = data[4]
         elif args.robot == 'hsr':
             imgraw = data[6]
 
-        # desired_encoding = {'bgr8','passthrough'} for rgb & depth respectively
-        img = bridge.imgmsg_to_cv2(imgraw, desired_encoding="passthrough")
+        # Use desired_encoding = {'bgr8','passthrough'} for rgb & depth respectively
+        img = bridge.imgmsg_to_cv2(imgraw, desired_encoding="bgr8")
         name = 'test.png'
         cv2.imshow(name, img)
         cv2.imwrite(name, img)
