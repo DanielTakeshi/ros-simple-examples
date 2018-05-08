@@ -7,7 +7,6 @@ Based on code from Justin Huang at UW CSE. `https://github.com/cse481wi18/cse481
 Just run `python gripper.py` with a Fetch Gazebo setup already running. If you
 switch to the simulator, you will see the gripper closing and opening. :-)
 
-
 Right now it doesn't work with the HSR, because the topics don't see to match
 up. There doesn't seem to be a clear analogue to the
 `gripper_controller/gripper_action` that the Fetch has, and examples of error
@@ -134,3 +133,12 @@ Publishers:
 
 Subscribers: None
 ```
+
+
+## HSR Information
+
+Update: actually maybe the HSR is easier than I thought if we just follow [their
+docs carefully][1]. However, I haven't gotten it working from a simple python
+script.
+
+[1]:https://docs.hsr.io/manual_en/development/ros_controller_interface.html

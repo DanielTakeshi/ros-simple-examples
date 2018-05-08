@@ -40,5 +40,12 @@ dependent on what kind of launch file we used for the simulator?
   case one that represents the torso movement (for the Fetch). But I'd like to
   know more.
 
+  Update: [somewhat answered in the HSR docs][1].
 
 - Figure out how movement of the Fetch's base and arm work.
+
+- Use [HSR code examples][1] in the case of when Fetch's motion requires MoveIt,
+  for compatibility with our existing HSR code base.
+
+
+[1]:https://docs.hsr.io/manual_en/development/ros_interface.html

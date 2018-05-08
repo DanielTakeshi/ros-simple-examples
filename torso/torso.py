@@ -73,7 +73,7 @@ def wait_for_time():
 
 if __name__ == "__main__":
     # Similar to the gripper code
-    rospy.init_node('trso_demo')
+    rospy.init_node('torso_demo')
     wait_for_time()
 
     torso = Torso()
