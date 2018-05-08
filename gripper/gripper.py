@@ -7,7 +7,7 @@ import actionlib
 import control_msgs.msg
 import rospy
 import sys, time
-import tmc_control_msgs.msg
+#import tmc_control_msgs.msg
 # HSR uses: tmc_control_msgs.msg.GripperApplyEffortActionGoal (?)
 
 CLOSED_POS = 0.0   # The position for a fully-closed gripper (meters).
