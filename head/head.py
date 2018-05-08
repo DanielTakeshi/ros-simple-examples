@@ -92,11 +92,11 @@ if __name__ == "__main__":
     rospy.sleep(2)
     head = Head()
 
-    # Look at 
+    # # Look at (i.e., point head)
     frame_id = 'base_link'
-    x, y, z = 10, 0, 0
+    x, y, z = 10, -10, 0
     head.look_at(frame_id, x, y, z)
 
-    # Pan tilt
-    #pan, tilt = 0, 0
-    #head.pan_tilt(pan, tilt)
+    # Pan tilt (values are in radians)
+    # pan, tilt = -1, 0
+    # head.pan_tilt(pan, tilt)

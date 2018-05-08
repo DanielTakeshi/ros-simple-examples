@@ -18,6 +18,7 @@ Examples:
 
 - `camera`: Processes the robot's camera images, mostly understood.
 - `gripper`: Open and close the (Fetch's) gripper, mostly understood.
+- `head`: Adjust Fetch's head, mostly understood.
 - `torso`: Adjust Fetch's torso, mostly understood.
 
 There are also topics for the robots listed in `topics`. However, these might be
@@ -26,19 +27,9 @@ dependent on what kind of launch file we used for the simulator?
 
 ## TODOs and Questions
 
-- Figure out what groupings like these rostopics represent:
-
-  ```
-  /torso_controller/follow_joint_trajectory/cancel
-  /torso_controller/follow_joint_trajectory/feedback
-  /torso_controller/follow_joint_trajectory/goal
-  /torso_controller/follow_joint_trajectory/result
-  /torso_controller/follow_joint_trajectory/status
-  ```
-
-  I think these mean that together these form an "action interface," and in this
-  case one that represents the torso movement (for the Fetch). But I'd like to
-  know more.
+- Figure out why we group ros topics into those with cancel, feedback, goal,
+  result, and status topics. I think these form an "action interface," but I'd
+  like to know deeply.
 
   Update: [somewhat answered in the HSR docs][1].
 
