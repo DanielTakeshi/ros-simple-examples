@@ -30,22 +30,24 @@ dependent on what kind of launch file we used for the simulator?
 ## TODOs and Questions
 
 - Get joint state reader set up in an easy fashion, i.e., physical robot goes to
-  a point, and then we extract the Cartesian position and such.
+  a point, and then we extract the Cartesian position and such. 
+
+  - Looks like [the solution is here][3].
 
 - Figure out why we group ros topics into those with cancel, feedback, goal,
   result, and status topics. I think these form an "action interface," but I'd
   like to know deeply.
 
-  Update: [somewhat answered in the HSR docs][1].
+  - Update: [somewhat answered in the HSR docs][1].
 
-- Figure out how movement of the Fetch's arm works, in detail, and understand
-  MoveIt.
+- Figure out movement of the Fetch's arm in detail, and understand MoveIt.
 
-- Use [HSR code examples][1] in the case of when Fetch's motion requires MoveIt,
-  for compatibility with our existing HSR code base.
+  - Or, could we use the inverse kinematics method from the `arm/arm.py` code?
+    Because then that gives us joint angles, and we can call that on the robot.
+    Should this be an alternative to MoveIt?
 
-- Figure out how to read data from the joint angles. In other words, [understand
-  this][3].
+- (Lower priority?) Use [HSR code examples][1] in the case of when Fetch's
+  motion requires MoveIt, for compatibility with our existing HSR code base.
 
 
 ## Robots

@@ -2,7 +2,7 @@
 
 Now let's move the robot's arms!
 
-## Fetch
+## Fetch: Background, Code
 
 These use an action interface with a `control_msgs/FollowJointTrajectory`
 action, like the torso and head. (Well, for the head, using the pan tilt method,
@@ -53,6 +53,11 @@ Code:
   the robot.
 - `moveit_goal_builder.py`, this is UW's interface which supposedly has
   advantages over `moveit_commander` or `moveit_python`.
+
+
+
+## Fetch: Disco and Joint Angle Fun
+
 
 Here's what happens when running the disco code. First, the torso moves up:
 
