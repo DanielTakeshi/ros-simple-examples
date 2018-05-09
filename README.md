@@ -16,6 +16,7 @@ my `.bashrc` file manually. Bleh.
 
 Examples:
 
+- `arm`: Adjust Fetch's arm.
 - `base`: Adjust Fetch's base.
 - `camera`: Processes the HSR and Fetch camera images.
 - `gripper`: Adjust Fetch's gripper.
@@ -28,16 +29,23 @@ dependent on what kind of launch file we used for the simulator?
 
 ## TODOs and Questions
 
+- Get joint state reader set up in an easy fashion, i.e., physical robot goes to
+  a point, and then we extract the Cartesian position and such.
+
 - Figure out why we group ros topics into those with cancel, feedback, goal,
   result, and status topics. I think these form an "action interface," but I'd
   like to know deeply.
 
   Update: [somewhat answered in the HSR docs][1].
 
-- Figure out how movement of the Fetch's base and arm work.
+- Figure out how movement of the Fetch's arm works, in detail, and understand
+  MoveIt.
 
 - Use [HSR code examples][1] in the case of when Fetch's motion requires MoveIt,
   for compatibility with our existing HSR code base.
+
+- Figure out how to read data from the joint angles. In other words, [understand
+  this][3].
 
 
 ## Robots
@@ -46,7 +54,6 @@ Here is some additional information about the robots we have.
 
 
 ### Fetch
-
 
 See the docs for details on the joint angles. For the Fetch, with the Gazebos
 simulator running in the background, I get this from echo-ing the
@@ -148,3 +155,4 @@ information on how to deal with sensors. That one has joint states.
 
 [1]:https://docs.hsr.io/manual_en/development/ros_interface.html
 [2]:https://github.com/BerkeleyAutomation/HSR_CORE/tree/master/core
+[3]:https://github.com/cse481wi18/cse481wi18/wiki/Lab-8%3A-Reading-joint-states
