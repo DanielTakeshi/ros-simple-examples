@@ -16,10 +16,11 @@ my `.bashrc` file manually. Bleh.
 
 Examples:
 
-- `camera`: Processes the robot's camera images, mostly understood.
-- `gripper`: Open and close the (Fetch's) gripper, mostly understood.
-- `head`: Adjust Fetch's head, mostly understood.
-- `torso`: Adjust Fetch's torso, mostly understood.
+- `base`: Adjust Fetch's base.
+- `camera`: Processes the HSR and Fetch camera images.
+- `gripper`: Adjust Fetch's gripper.
+- `head`: Adjust Fetch's head.
+- `torso`: Adjust Fetch's torso.
 
 There are also topics for the robots listed in `topics`. However, these might be
 dependent on what kind of launch file we used for the simulator?
