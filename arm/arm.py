@@ -101,6 +101,14 @@ class Arm(object):
         self._tf_listener = TransformListener()
 
     def move_to_joints(self, joint_state):
+        """ Often we'll write down the seven joints and call this.
+        
+        I think this doesn't require MoveIt, but the downside is we can't easily
+        generalize to different robotic systems since we normally want to go to
+        an (x,y,z) coordinate. Using our disco fetch example, the joint_state is
+        just one list, with the trajectory consisting of one target element
+        (which, again is the 7DOF joint angle we specify).
+        """
         goal = control_msgs.msg.FollowJointTrajectoryGoal()
         goal.trajectory.joint_names.extend(ArmJoints.names())
         point = trajectory_msgs.msg.JointTrajectoryPoint()

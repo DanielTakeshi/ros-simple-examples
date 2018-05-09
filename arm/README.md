@@ -55,16 +55,25 @@ Code:
 
 Here's what happens when running the disco code. First, the torso moves up:
 
-![](images/move1.png)
+![](images/move_1.png)
 
 Then we move the arm.
 
-![](images/move2.png)
+![](images/move_2.png)
 
 Sure, this is cool. It would be nice, though, to be able to get a joint state
 reader, so we can read the joints at a time (and not trial and error) but I'll
 have to read through those other tutorials.
 
+[The Fetch docs][3] have a picture of the Fetch with the arm extended straight
+out, which is what happens when all 7 joints are at 0. Here's an amusing result
+when you set the `shoulder_lift_joint` to be its largest value (87 degrees,
+according to the docs):
+
+![](images/move_3.png)
+
+Yeah, the simulator's physics are a bit off.
 
 [1]:https://github.com/cse481wi18/cse481wi18/wiki/Lab-7%3A-Controlling-the-arm
 [2]:https://github.com/cse481wi18/cse481wi18/wiki/Lab-19%3A-Cartesian-space-manipulation
+[3]:http://docs.fetchrobotics.com/robot_hardware.html
