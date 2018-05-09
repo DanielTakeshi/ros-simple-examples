@@ -47,7 +47,8 @@ The last sentence above is interesting. Why is there a closed-form solution?
 
 Code:
 
-- `arm.py`
+- `arm.py`, major script which uses MoveIt for motion planning, assuming we want
+  Cartesian coordinates. If we know the joint angles, then we don't need MoveIt.
 - `arm_joints.py`, utility for managing joints, doesn't actually assign them to
   the robot.
 - `moveit_goal_builder.py`, this is UW's interface which supposedly has
@@ -68,7 +69,8 @@ have to read through those other tutorials.
 [The Fetch docs][3] have a picture of the Fetch with the arm extended straight
 out, which is what happens when all 7 joints are at 0. Here's an amusing result
 when you set the `shoulder_lift_joint` to be its largest value (87 degrees,
-according to the docs):
+according to the docs), while all other values are 0 (so the arm is straight and
+the pan joint means the arm is "facing" straight in front of the robot):
 
 ![](images/move_3.png)
 
