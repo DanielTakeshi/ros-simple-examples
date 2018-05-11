@@ -174,7 +174,7 @@ if __name__ == "__main__":
 
     # Testing the forward method. Speed of 10 meters/sec will run (though I'm
     # guessing the actual physics is much slower) though with overshooting. :)
-    #base.go_forward(distance=1.0, speed=0.1)
+    base.go_forward(distance=1.0, speed=0.1)
     #base.go_forward(distance=-1.0, speed=0.1)
     #base.go_forward(distance=1.0, speed=10.0)
     #base.go_forward(distance=-1.0, speed=10.0)
@@ -196,6 +196,14 @@ if __name__ == "__main__":
     # If the robot has previously turned, the go foward will still "go foward"
     # because it's specified as the x-axis wrt the base link (pretty sure) so
     # that x-coordinate still is "directly in front" of the robot.
-    base.go_forward(distance=1.0, speed=0.1)
+    #base.go_forward(distance=1.0, speed=0.1)
 
-    # Other tests ...
+    # Use this for extacting position with respect to origin
+    time.sleep(2)
+    start = copy.deepcopy(base.odom.position)
+    print(type(start))
+    print(start)
+
+    start_l = np.array([start.x, start.y, start.z])
+    print(start_l)
+    print(start_l.shape)
