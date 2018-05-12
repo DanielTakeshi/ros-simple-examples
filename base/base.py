@@ -171,39 +171,97 @@ class Base(object):
 if __name__ == "__main__":
     rospy.init_node("base_demo")
     base = Base()
+    time.sleep(2)
 
     # Testing the forward method. Speed of 10 meters/sec will run (though I'm
     # guessing the actual physics is much slower) though with overshooting. :)
-    base.go_forward(distance=1.0, speed=0.1)
-    #base.go_forward(distance=-1.0, speed=0.1)
-    #base.go_forward(distance=1.0, speed=10.0)
-    #base.go_forward(distance=-1.0, speed=10.0)
+    if False:
+        base.go_forward(distance=1.0, speed=0.1)
+        base.go_forward(distance=-1.0, speed=0.1)
+        base.go_forward(distance=1.0, speed=10.0)
+        base.go_forward(distance=-1.0, speed=10.0)
 
     # Some turning stuff
-    #base.turn(30 * math.pi / 180)
-    #base.turn(-30 * math.pi / 180)
+    if False:
+        base.turn(30 * math.pi / 180)
+        base.turn(-30 * math.pi / 180)
 
     # Moving while turning
-    #start_time = time.time()
-    #angular_speed = 30 * (math.pi / 180)
-    #while True:
-    #    base.move(linear_speed=0.5, angular_speed=angular_speed)
-    #    elapsed_time = time.time() - start_time
-    #    if elapsed_time > 5:
-    #        break
-    #base.stop()
+    if False:
+        start_time = time.time()
+        angular_speed = 30 * (math.pi / 180)
+        while True:
+            base.move(linear_speed=0.5, angular_speed=angular_speed)
+            elapsed_time = time.time() - start_time
+            if elapsed_time > 5:
+                break
+        base.stop()
 
-    # If the robot has previously turned, the go foward will still "go foward"
+    # If the robot has previously turned, the go forward will still "go forward"
     # because it's specified as the x-axis wrt the base link (pretty sure) so
     # that x-coordinate still is "directly in front" of the robot.
-    #base.go_forward(distance=1.0, speed=0.1)
+    if False:
+        base.go_forward(distance=1.0, speed=0.1)
 
-    # Use this for extacting position with respect to origin
-    time.sleep(2)
-    start = copy.deepcopy(base.odom.position)
-    print(type(start))
-    print(start)
+    # Use this for extracting position with respect to origin
+    if False:
+        start = copy.deepcopy(base.odom.position)
+        print(type(start))
+        print(start)
+        start_l = np.array([start.x, start.y, start.z])
+        print(start_l)
+        print(start_l.shape)
 
-    start_l = np.array([start.x, start.y, start.z])
-    print(start_l)
-    print(start_l.shape)
+    # Testing position and orientation. Really bad way to go to (x,y).
+    if False:
+        base.go_forward(distance=1.0, speed=0.1)
+        start = copy.deepcopy(base.odom.position)
+        start_l = np.array([start.x, start.y, start.z])
+        yaw = Base._yaw_from_quaternion(base.odom.orientation)
+        print("start_l: {}\nyaw:{}\n".format(start_l, yaw))
+
+        base.turn(90 * math.pi / 180)
+        start = copy.deepcopy(base.odom.position)
+        start_l = np.array([start.x, start.y, start.z])
+        yaw = Base._yaw_from_quaternion(base.odom.orientation)
+        print("start_l: {}\nyaw:{}\n".format(start_l, yaw))
+
+        base.go_forward(distance=1.0, speed=0.1)
+        start = copy.deepcopy(base.odom.position)
+        start_l = np.array([start.x, start.y, start.z])
+        yaw = Base._yaw_from_quaternion(base.odom.orientation)
+        print("start_l: {}\nyaw:{}\n".format(start_l, yaw))
+
+    # Send the robot to (x,y) at some angle. This is ABSOLUTE motion so targ_x
+    # and targ_y should be wrt the map's origin (and not the robot's current
+    # origin). Some basic trig, we first rotate, then go forward. At the end, we
+    # rotate for the targ_z_angle.
+    if True:
+        targ_x = 3.0
+        targ_y = 2.0
+        targ_z_angle = -45.0
+
+        # Get distances and compute angles. All x and y here are absolute values.
+        start = copy.deepcopy(base.odom.position)
+        dist = np.sqrt( (start.x-targ_x)**2 + (start.y-targ_y)**2 )
+        rel_x = targ_x - start.x
+        rel_y = targ_y - start.y
+        assert -1 <= rel_x / dist <= 1
+        assert -1 <= rel_y / dist <= 1
+        first_angle_v1 = np.arccos(rel_x / dist)
+        first_angle_v2 = np.arcsin(rel_y / dist)
+        # After we've gone forward we need to undo the effect of our first turn.
+        targ_z = targ_z_angle - (first_angle_v1*(180/math.pi))
+
+        # Note that the output of np.arccos, np.arcsin are in radians.
+        print("rel_x, rel_y: {} and {}".format(rel_x, rel_y))
+        print("first turn at angle {} (or {})".format(first_angle_v1, first_angle_v2))
+        print("in degrees, {} (or {})".format(
+                first_angle_v1 * (180/math.pi), first_angle_v2 * (180/math.pi))
+        )
+        print("targ_z in degrees (including undoing first turn): {}".format(targ_z))
+
+        # Finally, do desired movement.
+        base.turn(first_angle_v1)
+        base.go_forward(distance=dist, speed=0.2)
+        base.turn(targ_z * (math.pi / 180))
