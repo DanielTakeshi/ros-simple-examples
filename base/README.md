@@ -70,3 +70,45 @@ topics in the publisher and subscriber, respectively, in order for this to work.
 
 
 ## HSR
+
+For the HSR, we use the "omni base."  See `hsr_omni_base_tests.py` for details.
+
+Start world:
+
+![](images/hsr_0.png)
+
+```
+At beginning, finished whole_body.move_to_go()
+starting robot.start_pose: [-1.648e-06,  9.682e-07, 3.283e-06]
+starting omni_base.pose:   [-4.155e-07, -2.997e-06, 3.108e-06]
+    
+calling omni_base.go_abs(0, 0, 1.57079632679, 300):
+updated robot.start_pose: [-1.648e-06, 9.682e-07, 3.283e-06]
+updated omni_base.pose:   [-8.109e-05, 0.000, 1.561]
+    
+calling omni_base.go_abs(1, 1, 1.57079632679, 300):
+updated robot.start_pose: [-1.648e-06, 9.682e-07, 3.283e-06]
+updated omni_base.pose:   [0.993, 0.995, 1.571]
+    
+calling omni_base.go_abs(1, 1, -1.57079632679, 300):
+updated robot.start_pose: [-1.648e-06, 9.682e-07, 3.283e-06]
+updated omni_base.pose:   [1.0004, 1.0004, -1.5800]
+```
+
+So, the `start_pose` (see `hsr_omni_base_tests.py` for details) stays *fixed*
+even though the `omni_base.pose` keeps updating itself. First, we rotated 90
+degrees (pi/2 radians):
+
+![](images/hsr_1.png)
+
+Then moved to (1,1) while maintaining the rotation:
+
+![](images/hsr_2.png)
+
+Then rotated -pi/2 radians.
+
+![](images/hsr_3.png)
+
+It works as expected, and the angle here (which the HSR docs say as the angle
+about the yaw axis) has the same semantics as the angle of the Fetch in our
+turning code (see `base.py` for details).

@@ -1,8 +1,9 @@
 # ros-simple-examples
 
-Some ROS code examples which hopefully are robot-agnostic. I'll test in
-simulation and hopefully it's just a toggle to figure out which robot to use,
-plus a list of the appropriate robot's ROS topic names.
+Some ROS code examples for the Fetch and HSR. Some of the code will be
+robot-agnostic. I'll test in simulation and hopefully it's just a toggle to
+figure out which robot to use, plus a list of the appropriate robot's ROS topic
+names.
 
 Versions:
 
@@ -17,8 +18,8 @@ my `.bashrc` file manually. Bleh.
 Examples:
 
 - `arm`: Adjust Fetch's arm.
-- `base`: Adjust Fetch's base.
-- `camera`: Processes the HSR and Fetch camera images.
+- `base`: Adjust Fetch and HSR base.
+- `camera`: Processes the Fetch and HSR camera images.
 - `gripper`: Adjust Fetch's gripper.
 - `head`: Adjust Fetch's head.
 - `torso`: Adjust Fetch's torso.
